@@ -1,0 +1,74 @@
+@use '../object/color' as * ;
+@use './animation' as * ;
+.o-content {
+  &__title {
+  font-weight: 600;
+  font-size: 24px;
+  span {
+  color: $cBlack;
+  }
+}
+&__moveTitle {
+  span {
+    display: inline-block;
+    letter-spacing: 2px;
+  }
+}
+  &__subtitle {
+    font-weight: 600;
+    font-size: 16px;
+    color: $cSubTitle;
+    margin: 10px 0;
+  }
+  &__text {
+    line-height: 25px;
+  }
+  &__btn {
+    color: $cWhite;
+    background-color: $cBlack;
+    width: 200px;
+    padding: 10px ;
+    font-size: 16px;
+    margin-top: 20px;
+    border: 1px solid $cBlack;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .3s;
+    &.travel {
+        &:hover {
+          background-color: $cWhite;
+          color: $cBlack;
+        }
+    }
+  }
+}
+.view.move {
+  .delay {
+    @for $i from  1 through 20 {
+      &:nth-child(#{$i}) {
+        animation-delay: #{($i * 0.01) + 0.5}s ;
+      }
+  }
+    @include animation (
+      $name : animation-text,
+      $duration: .5s,
+    );
+  }
+}
+@keyframes animation-text {
+  0% {
+   transform: translateY(0%);
+  }
+  25% {
+    transform: translateY(-50%);
+  }
+  
+  75% {
+    transform: translateY(50%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+

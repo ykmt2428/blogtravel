@@ -1,0 +1,60 @@
+@use '../object/object' as * ;
+.open aside {
+  display: block;
+}
+aside {
+  width: 100%;
+  height: 100%;
+  background-color: $cWhite;
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  //z-index: -1;
+}
+.l-aside {
+  width: 250px;
+  margin: 50px 0 50px auto;
+  .logo-items {
+    display: flex;
+    align-items: center;
+    //justify-content: space-between;
+    span {
+      font-size: 25px;
+      font-weight: 600;
+      &:nth-child(2) {
+        color: $cWineRed;
+      }
+    }
+  }
+}
+.titles {
+  margin-top: 20px;
+  li {
+    margin-bottom: 30px;
+    opacity: 0;
+    @include animation($name: titleAnimation);
+    @for $i from 1 to 4 {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * .2s;
+      }
+    }
+    span {
+      display: block;
+      a {
+        font-weight: 600;
+        font-size: 20px;
+      }
+    }
+  }
+}
+@keyframes titleAnimation {
+  0% {
+    opacity: 0;
+    transform: translateZ(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
